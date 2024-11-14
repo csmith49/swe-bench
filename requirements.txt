@@ -1,5 +1,0 @@
-zeno-client
-click
-pydantic
-pandas
-datasets

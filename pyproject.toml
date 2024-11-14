@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "swe-bench"
+version = "0.1.0"
+description = "Easy access to SWE-bench data and evaluation results."
+repository = "https://github.com/csmith49/swe-bench"
+authors = ["Calvin Smith <calvin@all-hands.dev>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+click = "^8.1.7"
+zeno-client = "^0.1.16"
+pydantic = "^2.9.2"
+pandas = "^2.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
