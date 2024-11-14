@@ -152,14 +152,29 @@ def get_gh_file(split: Split, entry: str, path: str, timeout: int = 100) -> str:
         path (str): Path to the file.
 
         timeout (int, default=100): Timeout for the HTTP request.
+
+    Raises:
+        ValueError: if the file cannot be found before the timeout.
     """
     GH_URL = "https://raw.githubusercontent.com"  # pylint: disable=invalid-name
     EVAL_DIR = "swe-bench/experiments/refs/heads/main/evaluation"  # pylint: disable=invalid-name
 
-    return requests.get(
+    request = requests.get(
         f"{GH_URL}/{EVAL_DIR}/{split.value}/{entry}/{path}",
         timeout=timeout,
-    ).text.strip()
+    )
+
+    match request.status_code:
+        case 200:
+            return request.text.strip()
+        case 404:
+            raise ValueError(
+                f"Cannot find {split.value}/{entry}/{path} in the evaluation folder."
+            )
+        case 408:
+            raise ValueError(f"Request timed out after {timeout} seconds.")
+        case _:
+            raise ValueError(f"Unexpected status code {request.status_code}.")
 
 
 class Evaluation(BaseModel):
