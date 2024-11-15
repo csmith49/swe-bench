@@ -82,17 +82,17 @@ class Results(BaseModel):
     Summarized results of a leaderboard entry.
     """
 
-    no_generation: list[InstanceID]
+    no_generation: list[InstanceID] = Field(default_factory=list)
     """
     Instance identifiers for which the model generated no patch.
     """
 
-    no_logs: list[InstanceID]
+    no_logs: list[InstanceID] = Field(default_factory=list)
     """
     Instance identifiers for which the evaluation harness produced no logs.
     """
 
-    resolved: list[InstanceID]
+    resolved: list[InstanceID] = Field(default_factory=list)
     """
     Instance identifiers for all issues resolved by the model.
     """
