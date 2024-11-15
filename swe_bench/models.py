@@ -263,11 +263,6 @@ class Instance(BaseModel):
     The repository the problem instance originates from.
     """
 
-    pull_number: int
-    """
-    The pull number of the original PR.
-    """
-
     instance_id: InstanceID
     """
     Unique identifier created from the `repo` and pull number.
