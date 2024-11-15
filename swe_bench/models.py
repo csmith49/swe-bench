@@ -255,21 +255,73 @@ class Dataset(BaseModel):
 
 class Instance(BaseModel):
     """
-    SWE-bench problem instance.
+    SWE-bench problem instance scraped from real-world fixes.
     """
 
     repo: str
+    """
+    The repository the problem instance originates from.
+    """
+
+    pull_number: int
+    """
+    The pull number of the original PR.
+    """
+
     instance_id: InstanceID
+    """
+    Unique identifier created from the `repo` and pull number.
+    """
+
     base_commit: str
+    """
+    The commit ID that the original PR was applied on top of.
+    """
+
     patch: str
+    """
+    Reference solution to the problem, extracted from the original PR's changes.
+    """
+
     test_patch: str
+    """
+    `.patch`-styled string with unseen tests checking if the problem was solved.
+    """
+
     problem_statement: str
+    """
+    Natural language description of the desired changes to the code base.
+    """
+
     hints_text: str
+    """
+    Natural language suggestion for how to solve the problem.
+    """
+
     created_at: datetime
+    """
+    When the source PR was first created (not merged).
+    """
+
     version: str
+    """
+    Release version (w.r.t. `repo`) during which the source PR was created.
+    """
+
     fail_to_pass: list[str] = Field(alias="FAIL_TO_PASS")
+    """
+    List of tests that must change in status from "fail" to "pass" for a solution to count.
+    """
+
     pass_to_pass: list[str] = Field(alias="PASS_TO_PASS")
+    """
+    List of tests that start passing and must continute to pass for a solution to count.
+    """
+
     environment_setup_commit: str
+    """
+    Base commit at which to install necessary dependencies for running problem.
+    """
 
     @field_validator("fail_to_pass", "pass_to_pass", mode="before")
     @classmethod
