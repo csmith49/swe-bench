@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "swe-bench"
-version = "0.1.2"
+version = "0.1.3"
 description = "Easy access to SWE-bench data and evaluation results."
 repository = "https://github.com/csmith49/swe-bench"
 authors = ["Calvin Smith <calvin@all-hands.dev>"]

@@ -66,7 +66,7 @@ class Prediction(BaseModel):
     Identifier for the problem instance being solved.
     """
 
-    patch: str = Field(alias="model_patch")
+    patch: str | None = Field(alias="model_patch")
     """
     Git patch produced by the model.
     """
