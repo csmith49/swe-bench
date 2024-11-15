@@ -71,7 +71,7 @@ class Prediction(BaseModel):
     Git patch produced by the model.
     """
 
-    name_or_path: str = Field(alias="model_name_or_path")
+    name_or_path: str | None = Field(alias="model_name_or_path")
     """
     Name or path to the model used for prediction.
     """
