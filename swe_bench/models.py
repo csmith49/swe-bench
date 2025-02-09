@@ -252,7 +252,7 @@ class Dataset(BaseModel):
         )
 
 
-class Instance(BaseModel):
+class Instance(BaseModel, populate_by_name=True):
     """
     SWE-bench problem instance scraped from real-world fixes.
     """
