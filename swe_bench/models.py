@@ -56,7 +56,7 @@ class Split(str, Enum):
         return dataset_ids[self]
 
 
-class Prediction(BaseModel):
+class Prediction(BaseModel, populate_by_name=True):
     """
     The per-instance output of a model.
     """
@@ -75,7 +75,6 @@ class Prediction(BaseModel):
     """
     Name or path to the model used for prediction.
     """
-
 
 class Results(BaseModel):
     """
